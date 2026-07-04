@@ -701,8 +701,8 @@ body{
 /* 数据值隐藏 + 静态 "--" 显示 */
 .insufficient-mode .data-val-i{display:none!important}
 .insufficient-mode .no-data-val{display:inline!important}
-/* badge 也隐藏 */
-.insufficient-mode .card-half .badge{display:none!important}
+/* badge 全部隐藏，避免"正常/放松"与"无数据"同时出现 */
+.insufficient-mode .badge{display:none!important}
 /* 装饰 blob/dot 淡化 */
 .insufficient-mode .card-half .card-blob{opacity:.15!important}
 .insufficient-mode .card-half .card-dot{opacity:.15!important}
@@ -714,7 +714,7 @@ body{
 .insufficient-mode .health-card .health-placeholder{display:inline!important}
 .insufficient-mode .metric-unit{display:none!important}
 
-.health-placeholder{display:none;color:var(--text3);font-size:12px}
+.health-placeholder{display:none;color:var(--text3);font-size:13px}
 
 /* no-data-val 默认隐藏 */
 .no-data-val{display:none;color:var(--text3)}
@@ -736,7 +736,7 @@ body{
   flex-direction:column;gap:8px;
 }
 .detail-placeholder-text{
-  font-size:14px;color:var(--text2);font-weight:500;
+  font-size:13px;color:var(--text2);font-weight:500;
 }
 
 </style>
@@ -1009,12 +1009,12 @@ body{
       <div class="card" onclick="navigate('sleep-detail')">
         <div class="card-header">
           <span class="card-title" style="color:var(--sleep)"><span class="icon-circle-sm" style="background:rgba(123,97,255,0.10)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sleep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>睡眠</span>
-          <span class="data-val-i" style="font-size:12px;color:var(--sleep)">23:16 - 07:05</span><span class="no-data-val" style="font-size:12px">无数据</span>
+          <span class="data-val-i" style="font-size:12px;color:var(--sleep)">23:16 - 07:05</span><span class="no-data-val" style="font-size:12px;color:var(--text3)">--</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <div style="flex:1">
             <div class="big-num">7<span class="unit">小时</span>49<span class="unit">分钟</span></div>
-            <div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);letter-spacing:-1px;padding:6px 0">无数据</div>
+            <div class="big-num-placeholder" style="display:none;font-size:22px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;padding:4px 0">无数据</div>
             
           </div>
           <div class="ring-wrap">
@@ -1022,7 +1022,7 @@ body{
               <circle cx="40" cy="40" r="34" stroke="var(--card2)" stroke-width="8" fill="none"/>
               <circle cx="40" cy="40" r="34" stroke="var(--sleep)" stroke-width="8" fill="none" stroke-dasharray="213.6" stroke-dashoffset="48" stroke-linecap="round"/>
             </svg>
-            <div class="ring-center"><span class="val no-data-on" style="display:none;font-size:28px;font-weight:700;color:var(--text3)">无数据</span><span class="val" style="font-size:28px">88</span><span class="lbl">评分</span></div>
+            <div class="ring-center"><span class="val no-data-on" style="display:none;font-size:18px;font-weight:600;color:var(--text3)">--</span><span class="val" style="font-size:28px">88</span><span class="lbl">评分</span></div>
           </div>
         </div>
         <div class="stages-bar" style="margin-top:14px">
@@ -1054,20 +1054,20 @@ body{
         <div style="display:flex;align-items:flex-start;gap:14px">
           <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding-top:2px">
             <div>
-              <span class="data-val-i" style="font-size:36px;font-weight:700;color:var(--text);letter-spacing:-1px">8,642</span><span class="no-data-val" style="font-size:36px;font-weight:700;letter-spacing:-1px">无数据</span>
+              <span class="data-val-i" style="font-size:36px;font-weight:700;color:var(--text);letter-spacing:-1px">8,642</span><span class="no-data-val" style="font-size:24px;font-weight:700;color:var(--text3);letter-spacing:-1px">无数据</span>
               <span style="font-size:13px;color:var(--text3);font-weight:400"> / 2000 步</span>
             </div>
             <div style="display:flex;gap:12px">
               <div style="display:flex;flex-direction:column;align-items:center">
-                <span class="data-val-i" style="font-size:15px;font-weight:600;color:var(--text)">4.8<span style="font-size:11px;color:var(--text3);font-weight:400">/10.0</span></span><span class="no-data-val" style="font-size:15px;font-weight:600">无数据</span>
+                <span class="data-val-i" style="font-size:15px;font-weight:600;color:var(--text)">4.8<span style="font-size:11px;color:var(--text3);font-weight:400">/10.0</span></span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span>
                 <span style="font-size:9px;color:var(--text3);margin-top:2px">千米</span>
               </div>
               <div style="display:flex;flex-direction:column;align-items:center">
-                <span class="data-val-i" style="font-size:15px;font-weight:600;color:var(--text)">432<span style="font-size:11px;color:var(--text3);font-weight:400">/500</span></span><span class="no-data-val" style="font-size:15px;font-weight:600">无数据</span>
+                <span class="data-val-i" style="font-size:15px;font-weight:600;color:var(--text)">432<span style="font-size:11px;color:var(--text3);font-weight:400">/500</span></span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span>
                 <span style="font-size:9px;color:var(--text3);margin-top:2px">千卡</span>
               </div>
               <div style="display:flex;flex-direction:column;align-items:center">
-                <span class="data-val-i" style="font-size:15px;font-weight:600;color:var(--text)">38<span style="font-size:11px;color:var(--text);font-weight:600">%</span></span><span class="no-data-val" style="font-size:15px;font-weight:600">无数据</span>
+                <span class="data-val-i" style="font-size:15px;font-weight:600;color:var(--text)">38<span style="font-size:11px;color:var(--text);font-weight:600">%</span></span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span>
                 <span style="font-size:9px;color:var(--text3);margin-top:2px">最大摄氧</span>
               </div>
             </div>
@@ -1081,7 +1081,7 @@ body{
               <circle cx="65" cy="65" r="32" stroke="var(--card2)" stroke-width="10" fill="none"/>
               <circle cx="65" cy="65" r="32" stroke="#1B8A3D" stroke-width="10" fill="none" stroke-dasharray="201.1" stroke-dashoffset="26.1" stroke-linecap="round"/>
             </svg>
-            <div class="ring-center"><span class="val no-data-on" style="display:none;font-size:20px;font-weight:700;color:var(--text3)">无数据</span><span class="val" style="font-size:17px">78%</span><span class="lbl" style="font-size:10px;color:var(--text);font-weight:500">目标</span></div>
+            <div class="ring-center"><span class="val no-data-on" style="display:none;font-size:16px;font-weight:600;color:var(--text3)">--</span><span class="val" style="font-size:17px">78%</span><span class="lbl" style="font-size:10px;color:var(--text);font-weight:500">目标</span></div>
           </div>
         </div>
       </div>
@@ -1094,14 +1094,14 @@ body{
             <span style="font-size:12px;color:var(--text2);font-weight:500">心率</span>
             <span style="width:5px;height:5px;background:#FF3B30;border-radius:50%;animation:pulse 0.8s ease-in-out infinite;margin-left:auto"></span>
           </div>
-          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">72</span><span class="no-data-val metric-num" style="font-size:29px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">次/分钟</span></div>
+          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">72</span><span class="no-data-val metric-num" style="font-size:18px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">次/分钟</span></div>
         </div><div class="card-half" onclick="navigate('stress-detail')">
           <div class="card-blob blob-stress"></div><div class="card-dot dot1" style="background:var(--stress)"></div><div class="card-dot dot2" style="background:var(--stress)"></div>
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="2"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="2"/></svg>
             <span style="font-size:12px;color:var(--text2);font-weight:500">压力</span>
           </div>
-          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">28</span><span class="no-data-val metric-num" style="font-size:29px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="badge badge-warn" style="font-size:10px;padding:2px 8px;vertical-align:middle;margin-left:5px">放松</span></div>
+          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">28</span><span class="no-data-val metric-num" style="font-size:18px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="badge badge-warn" style="font-size:10px;padding:2px 8px;vertical-align:middle;margin-left:5px">放松</span></div>
         </div>
       </div><div class="card-row">
         <div class="card-half" onclick="navigate('spo2-detail')">
@@ -1110,14 +1110,14 @@ body{
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 4 10 4 14c0 4.4 3.6 8 8 8s8-3.6 8-8c0-4-4-8-8-12z"/><path d="M12 6v6"/></svg>
             <span style="font-size:12px;color:var(--text2);font-weight:500">血氧</span>
           </div>
-          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">98</span><span class="no-data-val metric-num" style="font-size:29px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">%</span><span class="badge badge-good" style="font-size:9px;padding:2px 7px;vertical-align:middle;margin-left:5px">正常</span></div>
+          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">98</span><span class="no-data-val metric-num" style="font-size:18px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">%</span><span class="badge badge-good" style="font-size:9px;padding:2px 7px;vertical-align:middle;margin-left:5px">正常</span></div>
         </div><div class="card-half" onclick="navigate('temp-detail')">
           <div class="card-blob blob-temp"></div><div class="card-dot dot1" style="background:var(--temp)"></div><div class="card-dot dot2" style="background:var(--temp)"></div>
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--temp)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="15"/><circle cx="12" cy="19" r="3.5"/><line x1="12" y1="8" x2="12" y2="13"/></svg>
             <span style="font-size:12px;color:var(--text2);font-weight:500">温度</span>
           </div>
-          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">36.5</span><span class="no-data-val metric-num" style="font-size:29px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">°C</span></div>
+          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">36.5</span><span class="no-data-val metric-num" style="font-size:18px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">°C</span></div>
         </div>
       </div><div class="card-row">
         <div class="card-half" onclick="navigate('hrv-detail')">
@@ -1126,14 +1126,14 @@ body{
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hrv)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h1.5l2-6 2.5 12 2.5-9 2 3H21"/></svg>
             <span style="font-size:12px;color:var(--text2);font-weight:500">心率变异性</span>
           </div>
-          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">48</span><span class="no-data-val metric-num" style="font-size:29px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">ms</span></div>
+          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">48</span><span class="no-data-val metric-num" style="font-size:18px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">ms</span></div>
         </div><div class="card-half" onclick="navigate('cadence-detail')">
           <div class="card-blob blob-cadence"></div><div class="card-dot dot1" style="background:var(--cadence)"></div><div class="card-dot dot2" style="background:var(--cadence)"></div>
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cadence)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="9" r="2.5"/><path d="M5 11l2 7h2l1-4 1 4h2l2-7"/></svg>
             <span style="font-size:12px;color:var(--text2);font-weight:500">步频</span>
           </div>
-          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">112</span><span class="no-data-val metric-num" style="font-size:29px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">步/分钟</span></div>
+          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">112</span><span class="no-data-val metric-num" style="font-size:18px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">步/分钟</span></div>
         </div>
       </div><div class="card-row">
         <div class="card-half" onclick="navigate('breath-detail')">
@@ -1142,7 +1142,7 @@ body{
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--rate)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0 3 1.5 5 4 5s3.5-2 4-5c.5-3 2-5 4-5s4 2 4 5"/><circle cx="12" cy="12" r="2"/></svg>
             <span style="font-size:12px;color:var(--text2);font-weight:500">呼吸率</span>
           </div>
-          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">16</span><span class="no-data-val metric-num" style="font-size:29px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">次/分钟</span></div>
+          <div style="position:relative;z-index:1"><span class="data-val-i metric-num" style="font-size:29px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1">16</span><span class="no-data-val metric-num" style="font-size:18px;font-weight:700;color:var(--text3);letter-spacing:-0.5px;line-height:1.1">无数据</span><span class="metric-unit" style="font-size:11px;color:var(--text2);font-weight:400;margin-left:2px">次/分钟</span></div>
         </div>
         <div style="flex:1;min-width:0"></div>
       </div><div style="height:16px"></div>
@@ -1153,26 +1153,26 @@ body{
     <div class="screen" id="screen-sleep-detail">
       <div class="nav-bar"><button class="back" onclick="navigate('today')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">睡眠详情</span></div>
       <div style="padding:0 16px">
-        <div style="text-align:center;margin:16px 0"><div class="big-num" style="font-size:64px;font-weight:700;color:var(--text);letter-spacing:-2px">88</div><div class="big-num-placeholder" style="display:none;font-size:48px;font-weight:700;color:var(--text3);padding:8px 0">无数据</div><div style="font-size:16px;color:var(--sleep)">睡眠评分 · 良好</div></div>
+        <div style="text-align:center;margin:16px 0"><div class="big-num" style="font-size:64px;font-weight:700;color:var(--text);letter-spacing:-2px">88</div><div class="big-num-placeholder" style="display:none;font-size:30px;font-weight:700;color:var(--text3);padding:8px 0">无数据</div><div style="font-size:16px;color:var(--sleep)">睡眠评分 · 良好</div></div>
         <div style="display:flex;justify-content:center;gap:20px;margin:16px 0">
-          <div style="text-align:center"><div style="font-size:28px;font-weight:700;color:var(--text)"><span class="data-val-i">7h49m</span><span class="no-data-val" style="font-size:22px;font-weight:700">无数据</span></div><div style="font-size:12px;color:var(--text2)">总时长</div></div>
-          <div style="text-align:center"><div style="font-size:28px;font-weight:700;color:var(--text)"><span class="data-val-i">23:16</span><span class="no-data-val" style="font-size:22px;font-weight:700">无数据</span></div><div style="font-size:12px;color:var(--text2)">入睡时间</div></div>
-          <div style="text-align:center"><div style="font-size:28px;font-weight:700;color:var(--text)"><span class="data-val-i">07:05</span><span class="no-data-val" style="font-size:22px;font-weight:700">无数据</span></div><div style="font-size:12px;color:var(--text2)">清醒时间</div></div>
+          <div style="text-align:center"><div style="font-size:28px;font-weight:700;color:var(--text)"><span class="data-val-i">7h49m</span><span class="no-data-val" style="font-size:15px;font-weight:600;color:var(--text3)">--</span></div><div style="font-size:12px;color:var(--text2)">总时长</div></div>
+          <div style="text-align:center"><div style="font-size:28px;font-weight:700;color:var(--text)"><span class="data-val-i">23:16</span><span class="no-data-val" style="font-size:15px;font-weight:600;color:var(--text3)">--</span></div><div style="font-size:12px;color:var(--text2)">入睡时间</div></div>
+          <div style="text-align:center"><div style="font-size:28px;font-weight:700;color:var(--text)"><span class="data-val-i">07:05</span><span class="no-data-val" style="font-size:15px;font-weight:600;color:var(--text3)">--</span></div><div style="font-size:12px;color:var(--text2)">清醒时间</div></div>
         </div>
         <div class="card" style="margin:0 0 12px;cursor:default">
           <div class="card-title" style="margin-bottom:12px">睡眠比例</div><div class="detail-placeholder-overlay"><div class="detail-placeholder-text">无数据</div></div>
           <div class="stages-bar" style="height:24px"><div class="stage-deep" style="flex:1.8;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff">深睡</div><div class="stage-light" style="flex:2.4;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff">浅睡</div><div class="stage-rem" style="flex:2;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff">眼动</div></div>
-          <div style="display:flex;justify-content:space-between;margin-top:8px"><span class="data-val-i" style="font-size:13px;color:var(--text2)"><span style="color:var(--sleep)">●</span> 深睡 1h48m (23%)</span><span class="no-data-val" style="font-size:13px;color:var(--text3);margin-right:8px">● 深睡 无数据</span><span class="data-val-i" style="font-size:13px;color:var(--text2)"><span style="color:#9B8AFF">●</span> 浅睡 3h12m (41%)</span><span class="no-data-val" style="font-size:13px;color:var(--text3);margin-right:8px">● 浅睡 无数据</span><span class="data-val-i" style="font-size:13px;color:var(--text2)"><span style="color:#BFB3FF">●</span> 眼动 2h05m (27%)</span><span class="no-data-val" style="font-size:13px;color:var(--text3)">● 眼动 无数据</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px"><span class="data-val-i" style="font-size:13px;color:var(--text2)"><span style="color:var(--sleep)">●</span> 深睡 1h48m (23%)</span><span class="no-data-val" style="font-size:13px;color:var(--text3);margin-right:8px">● 深睡 --</span><span class="data-val-i" style="font-size:13px;color:var(--text2)"><span style="color:#9B8AFF">●</span> 浅睡 3h12m (41%)</span><span class="no-data-val" style="font-size:13px;color:var(--text3);margin-right:8px">● 浅睡 --</span><span class="data-val-i" style="font-size:13px;color:var(--text2)"><span style="color:#BFB3FF">●</span> 眼动 2h05m (27%)</span><span class="no-data-val" style="font-size:13px;color:var(--text3)">● 眼动 --</span></div>
         </div>
         <div class="card" style="margin:0 0 12px;cursor:default">
-          <div class="metric-row"><span class="metric-label">醒来次数</span><span class="metric-value">2 次</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
-          <div class="metric-row"><span class="metric-label">零星睡眠</span><span class="metric-value">12 分钟</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
-          <div class="metric-row"><span class="metric-label">睡眠效率</span><span class="metric-value">92%</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
+          <div class="metric-row"><span class="metric-label">醒来次数</span><span class="metric-value">2 次</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
+          <div class="metric-row"><span class="metric-label">零星睡眠</span><span class="metric-value">12 分钟</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
+          <div class="metric-row"><span class="metric-label">睡眠效率</span><span class="metric-value">92%</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
         </div>
         <div class="card" style="margin:0 0 12px;cursor:default">
           <div class="card-title" style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
             <span>睡眠时段</span>
-            <span class="data-val-i" style="font-size:14px;font-weight:600;color:var(--sleep)">7h49m</span><span class="no-data-val" style="font-size:14px;font-weight:600;color:var(--text3)">无数据</span>
+            <span class="data-val-i" style="font-size:14px;font-weight:600;color:var(--sleep)">7h49m</span><span class="no-data-val" style="font-size:14px;font-weight:500;color:var(--text3)">--</span>
           </div>
           <svg viewBox="0 0 360 120" style="width:100%;height:120px">
             <defs>
@@ -1216,10 +1216,10 @@ body{
             <line x1="74" y1="62" x2="74" y2="78" stroke="var(--card2)" stroke-width="1" stroke-dasharray="2,3"/>
             <line x1="317" y1="62" x2="317" y2="78" stroke="var(--card2)" stroke-width="1" stroke-dasharray="2,3"/>
             <!-- Bottom labels -->
-            <text x="74" y="92" fill="var(--text2)" font-size="11" text-anchor="middle"><tspan class="data-val-i">入眠 23:16</tspan><tspan class="no-data-val">无数据</tspan></text>
-            <text x="317" y="92" fill="var(--text2)" font-size="11" text-anchor="middle"><tspan class="data-val-i">醒来 07:05</tspan><tspan class="no-data-val">无数据</tspan></text>
+            <text x="74" y="92" fill="var(--text2)" font-size="11" text-anchor="middle"><tspan class="data-val-i">入眠 23:16</tspan><tspan class="no-data-val">--</tspan></text>
+            <text x="317" y="92" fill="var(--text2)" font-size="11" text-anchor="middle"><tspan class="data-val-i">醒来 07:05</tspan><tspan class="no-data-val">--</tspan></text>
             <!-- Stats footer -->
-            <text x="195" y="114" fill="var(--text2)" font-size="11" text-anchor="middle"><tspan class="data-val-i">零星睡眠 12分钟 · 醒来 2次</tspan><tspan class="no-data-val">无数据</tspan></text>
+            <text x="195" y="114" fill="var(--text2)" font-size="11" text-anchor="middle"><tspan class="data-val-i">零星睡眠 12分钟 · 醒来 2次</tspan><tspan class="no-data-val">--</tspan></text>
           </svg>
         </div>
         <div class="card" style="margin:0 0 12px;cursor:default">
@@ -1764,7 +1764,7 @@ body{
                 <circle cx="85" cy="85" r="48" stroke="var(--card2)" stroke-width="11" fill="none"/>
                 <circle cx="85" cy="85" r="48" stroke="url(#rg3)" stroke-width="11" fill="none" stroke-dasharray="301.6" stroke-dashoffset="41.0" stroke-linecap="round"/>
               </svg>
-              <div class="ring-center"><span class="val" style="font-size:28px;letter-spacing:-1px">78%</span><span class="val no-data-on" style="display:none;font-size:22px;font-weight:700;color:var(--text3)">--</span><span class="lbl" style="font-size:10px;color:var(--text);font-weight:500">目标</span></div>
+              <div class="ring-center"><span class="val" style="font-size:28px;letter-spacing:-1px">78%</span><span class="val no-data-on" style="display:none;font-size:18px;font-weight:700;color:var(--text3)">无数据</span><span class="lbl" style="font-size:10px;color:var(--text);font-weight:500">目标</span></div>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
@@ -1773,7 +1773,7 @@ body{
                 <div style="width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0"></div>
                 <span style="font-size:12px;color:var(--text2);font-weight:500">步数</span>
               </div>
-              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">8,642</span><span class="no-data-val" style="font-size:26px;font-weight:700;letter-spacing:-0.5px">无数据</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400"> / 2000</span></div>
+              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">8,642</span><span class="no-data-val" style="font-size:16px;font-weight:600;color:var(--text3);letter-spacing:-0.5px">--</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400"> / 2000</span></div>
               <div style="margin-top:8px;height:4px;background:var(--card2);border-radius:4px;overflow:hidden"><div style="height:100%;width:100%;background:var(--primary);border-radius:4px"></div></div>
             </div>
             <div style="background:var(--card);border-radius:14px;padding:16px 14px;text-align:left">
@@ -1781,7 +1781,7 @@ body{
                 <div style="width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0"></div>
                 <span style="font-size:12px;color:var(--text2);font-weight:500">千米</span>
               </div>
-              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">4.8</span><span class="no-data-val" style="font-size:26px;font-weight:700;letter-spacing:-0.5px">无数据</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400"> / 10.0</span></div>
+              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">4.8</span><span class="no-data-val" style="font-size:16px;font-weight:600;color:var(--text3);letter-spacing:-0.5px">--</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400"> / 10.0</span></div>
               <div style="margin-top:8px;height:4px;background:var(--card2);border-radius:4px;overflow:hidden"><div style="height:100%;width:48%;background:var(--primary);border-radius:4px"></div></div>
             </div>
             <div style="background:var(--card);border-radius:14px;padding:16px 14px;text-align:left">
@@ -1789,7 +1789,7 @@ body{
                 <div style="width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0"></div>
                 <span style="font-size:12px;color:var(--text2);font-weight:500">千卡</span>
               </div>
-              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">432</span><span class="no-data-val" style="font-size:26px;font-weight:700;letter-spacing:-0.5px">无数据</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400"> / 500</span></div>
+              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">432</span><span class="no-data-val" style="font-size:16px;font-weight:600;color:var(--text3);letter-spacing:-0.5px">--</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400"> / 500</span></div>
               <div style="margin-top:8px;height:4px;background:var(--card2);border-radius:4px;overflow:hidden"><div style="height:100%;width:86%;background:var(--primary);border-radius:4px"></div></div>
             </div>
             <div style="background:var(--card);border-radius:14px;padding:16px 14px;text-align:left">
@@ -1797,7 +1797,7 @@ body{
                 <div style="width:8px;height:8px;border-radius:50%;background:#7A9A7E;flex-shrink:0"></div>
                 <span style="font-size:12px;color:var(--text2);font-weight:500">最大摄氧</span>
               </div>
-              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">38</span><span class="no-data-val" style="font-size:26px;font-weight:700;letter-spacing:-0.5px">无数据</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400">%</span></div>
+              <div style="font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px"><span class="data-val-i">38</span><span class="no-data-val" style="font-size:16px;font-weight:600;color:var(--text3);letter-spacing:-0.5px">--</span><span class="metric-unit" style="font-size:13px;color:var(--text3);font-weight:400">%</span></div>
               <div style="margin-top:8px;height:4px;background:var(--card2);border-radius:4px;overflow:hidden"><div style="height:100%;width:38%;background:#28A745;border-radius:4px"></div></div>
             </div>
           </div>
@@ -1812,7 +1812,7 @@ body{
       <div class="nav-bar"><button class="back" onclick="navigate('today')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">心率详情</span></div>
       <div style="padding:16px">
         <div class="card" style="cursor:default;text-align:center">
-          <div class="big-num" style="font-size:56px">72<span class="unit">次/分钟</span></div><div class="big-num-placeholder" style="display:none;font-size:40px;font-weight:700;color:var(--text3);padding:16px 0">--<span style="font-size:14px;font-weight:400">次/分钟</span></div>
+          <div class="big-num" style="font-size:56px">72<span class="unit">次/分钟</span></div><div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);padding:16px 0">无数据</div>
         </div>
         <div class="card" style="cursor:default">
           <div class="card-header">
@@ -1845,9 +1845,9 @@ body{
         </div>
         <div class="card" style="cursor:default">
           <div class="card-title" style="margin-bottom:8px">今日心率统计</div>
-          <div class="metric-row"><span class="metric-label">日平均心率</span><span class="metric-value">68 bpm</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
-          <div class="metric-row"><span class="metric-label">日最小心率</span><span class="metric-value">52 bpm</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
-          <div class="metric-row"><span class="metric-label">日最大心率</span><span class="metric-value">128 bpm</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
+          <div class="metric-row"><span class="metric-label">日平均心率</span><span class="metric-value">68 bpm</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
+          <div class="metric-row"><span class="metric-label">日最小心率</span><span class="metric-value">52 bpm</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
+          <div class="metric-row"><span class="metric-label">日最大心率</span><span class="metric-value">128 bpm</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
         </div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:12px">近7天趋势</div><div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 2px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">70</span><div style="width:100%;height:80%;background:var(--heart);border-radius:6px 6px 3px 3px;opacity:0.55;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周一</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">72</span><div style="width:100%;height:86%;background:var(--heart);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周二</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">68</span><div style="width:100%;height:72%;background:var(--heart);border-radius:6px 6px 3px 3px;opacity:0.50;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周三</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">71</span><div style="width:100%;height:82%;background:var(--heart);border-radius:6px 6px 3px 3px;opacity:0.57;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周四</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">73</span><div style="width:100%;height:92%;background:var(--heart);border-radius:6px 6px 3px 3px;opacity:0.65;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周五</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">69</span><div style="width:100%;height:76%;background:var(--heart);border-radius:6px 6px 3px 3px;opacity:0.52;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周六</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">72</span><div style="width:100%;height:86%;background:var(--heart);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周日</span></div></div></div>
       </div>
@@ -1859,7 +1859,7 @@ body{
       <div style="padding:16px">
         <div class="card" style="cursor:default;text-align:center">
           <div style="display:flex;align-items:baseline;justify-content:center;gap:16px">
-            <div class="big-num" style="font-size:56px;display:inline">28</div><div class="big-num-placeholder" style="display:none;font-size:56px;font-weight:700;color:var(--text3);text-align:center;padding:16px 0">--</div>
+            <div class="big-num" style="font-size:56px;display:inline">28</div><div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);text-align:center;padding:16px 0">无数据</div>
             <span class="badge badge-warn" style="font-size:14px;padding:6px 14px;vertical-align:middle">放松</span>
           </div>
         </div>
@@ -1944,9 +1944,9 @@ body{
         </div>
         <div class="card" style="cursor:default">
           <div class="card-title" style="margin-bottom:8px">今日压力统计</div>
-          <div class="metric-row"><span class="metric-label">平均压力值</span><span class="metric-value">42</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
-          <div class="metric-row"><span class="metric-label">最小压力值</span><span class="metric-value">28</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
-          <div class="metric-row"><span class="metric-label">最大压力值</span><span class="metric-value">66</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div>
+          <div class="metric-row"><span class="metric-label">平均压力值</span><span class="metric-value">42</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
+          <div class="metric-row"><span class="metric-label">最小压力值</span><span class="metric-value">28</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
+          <div class="metric-row"><span class="metric-label">最大压力值</span><span class="metric-value">66</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div>
         </div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:12px">近7天趋势</div><div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 2px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">30</span><div style="width:100%;height:58%;background:var(--stress);border-radius:6px 6px 3px 3px;opacity:0.52;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周一</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">42</span><div style="width:100%;height:72%;background:var(--stress);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周二</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">55</span><div style="width:100%;height:88%;background:var(--stress);border-radius:6px 6px 3px 3px;opacity:0.70;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周三</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">38</span><div style="width:100%;height:66%;background:var(--stress);border-radius:6px 6px 3px 3px;opacity:0.56;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周四</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">28</span><div style="width:100%;height:52%;background:var(--stress);border-radius:6px 6px 3px 3px;opacity:0.48;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周五</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">35</span><div style="width:100%;height:62%;background:var(--stress);border-radius:6px 6px 3px 3px;opacity:0.54;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周六</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">42</span><div style="width:100%;height:72%;background:var(--stress);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周日</span></div></div></div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:10px">压力缓解建议</div><div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:10px;background:var(--card2);border-radius:12px;padding:12px 14px"><div style="width:36px;height:36px;border-radius:50%;background:rgba(52,199,89,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:18px">🧘</span></div><div><div style="font-size:13px;font-weight:600;color:var(--text)">每日冥想</div><div style="font-size:11px;color:var(--text2);margin-top:2px">每天10分钟深呼吸冥想，有效降低压力指数</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--card2);border-radius:12px;padding:12px 14px"><div style="width:36px;height:36px;border-radius:50%;background:rgba(50,173,230,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:18px">🏃</span></div><div><div style="font-size:13px;font-weight:600;color:var(--text)">规律运动</div><div style="font-size:11px;color:var(--text2);margin-top:2px">每周3-5次有氧运动，促进内啡肽分泌</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--card2);border-radius:12px;padding:12px 14px"><div style="width:36px;height:36px;border-radius:50%;background:rgba(175,82,222,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:18px">😴</span></div><div><div style="font-size:13px;font-weight:600;color:var(--text)">充足睡眠</div><div style="font-size:11px;color:var(--text2);margin-top:2px">保证7-8小时优质睡眠，帮助身心恢复</div></div></div></div></div>
@@ -1957,7 +1957,7 @@ body{
     <div class="screen" id="screen-spo2-detail">
       <div class="nav-bar"><button class="back" onclick="navigate('today')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">血氧详情</span></div>
       <div style="padding:16px">
-        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">98<span class="unit">%</span></div><div class="big-num-placeholder" style="display:none;font-size:40px;font-weight:700;color:var(--text3);padding:16px 0">--<span style="font-size:14px;font-weight:400">%</span></div><span class="badge badge-good">正常</span></div>
+        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">98<span class="unit">%</span></div><div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);padding:16px 0">无数据</div><span class="badge badge-good">正常</span></div>
         <div class="card" style="cursor:default">
           <div class="card-title" style="margin-bottom:12px">24小时血氧趋势</div><div class="detail-placeholder-overlay"><div class="detail-placeholder-text">无数据</div></div>
           <svg width="100%" height="200" viewBox="0 0 340 225">
@@ -2000,7 +2000,7 @@ body{
             <text x="254" y="204" font-size="9" fill="#AEAEB2">&lt;70%</text>
           </svg>
         </div>
-        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日血氧统计</div><div class="metric-row"><span class="metric-label">日平均血氧</span><span class="metric-value">97%</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最小血氧</span><span class="metric-value">94%</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最大血氧</span><span class="metric-value">99%</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div></div>
+        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日血氧统计</div><div class="metric-row"><span class="metric-label">日平均血氧</span><span class="metric-value">97%</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最小血氧</span><span class="metric-value">94%</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最大血氧</span><span class="metric-value">99%</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div></div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:12px">近7天趋势</div><div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 2px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">97</span><div style="width:100%;height:80%;background:var(--spo2);border-radius:6px 6px 3px 3px;opacity:0.55;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周一</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">98</span><div style="width:100%;height:86%;background:var(--spo2);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周二</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">97</span><div style="width:100%;height:80%;background:var(--spo2);border-radius:6px 6px 3px 3px;opacity:0.55;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周三</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">96</span><div style="width:100%;height:72%;background:var(--spo2);border-radius:6px 6px 3px 3px;opacity:0.50;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周四</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">98</span><div style="width:100%;height:86%;background:var(--spo2);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周五</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">99</span><div style="width:100%;height:94%;background:var(--spo2);border-radius:6px 6px 3px 3px;opacity:0.68;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周六</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">98</span><div style="width:100%;height:86%;background:var(--spo2);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周日</span></div></div></div>
       </div>
     </div>
@@ -2009,7 +2009,7 @@ body{
     <div class="screen" id="screen-temp-detail">
       <div class="nav-bar"><button class="back" onclick="navigate('today')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">温度详情</span></div>
       <div style="padding:16px">
-        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">36.5<span class="unit">°C</span></div><div class="big-num-placeholder" style="display:none;font-size:40px;font-weight:700;color:var(--text3);padding:16px 0">--<span style="font-size:14px;font-weight:400">°C</span></div><span class="badge badge-good">正常</span></div>
+        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">36.5<span class="unit">°C</span></div><div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);padding:16px 0">无数据</div><span class="badge badge-good">正常</span></div>
         <div class="card" style="cursor:default">
           <div class="card-title" style="margin-bottom:12px">24小时温度趋势</div><div class="detail-placeholder-overlay"><div class="detail-placeholder-text">无数据</div></div>
           <svg width="100%" height="200" viewBox="0 0 340 220">
@@ -2051,7 +2051,7 @@ body{
             <circle cx="124.7" cy="142.4" r="3" fill="var(--temp)"/>
           </svg>
         </div>
-        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日温度统计</div><div class="metric-row"><span class="metric-label">日平均温度</span><span class="metric-value">36.4°C</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最低温度</span><span class="metric-value">36.1°C</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最高温度</span><span class="metric-value">37.0°C</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div></div>
+        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日温度统计</div><div class="metric-row"><span class="metric-label">日平均温度</span><span class="metric-value">36.4°C</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最低温度</span><span class="metric-value">36.1°C</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最高温度</span><span class="metric-value">37.0°C</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div></div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:12px">近7天趋势</div><div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 2px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">36.5</span><div style="width:100%;height:68%;background:var(--temp);border-radius:6px 6px 3px 3px;opacity:0.52;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周一</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">36.3</span><div style="width:100%;height:55%;background:var(--temp);border-radius:6px 6px 3px 3px;opacity:0.44;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周二</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">36.7</span><div style="width:100%;height:80%;background:var(--temp);border-radius:6px 6px 3px 3px;opacity:0.62;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周三</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">36.8</span><div style="width:100%;height:88%;background:var(--temp);border-radius:6px 6px 3px 3px;opacity:0.68;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周四</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">36.4</span><div style="width:100%;height:60%;background:var(--temp);border-radius:6px 6px 3px 3px;opacity:0.48;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周五</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">36.6</span><div style="width:100%;height:74%;background:var(--temp);border-radius:6px 6px 3px 3px;opacity:0.58;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周六</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">36.5</span><div style="width:100%;height:68%;background:var(--temp);border-radius:6px 6px 3px 3px;opacity:0.52;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周日</span></div></div></div>
       </div>
     </div>
@@ -2060,7 +2060,7 @@ body{
     <div class="screen" id="screen-hrv-detail">
       <div class="nav-bar"><button class="back" onclick="navigate('today')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">心率变异性详情</span></div>
       <div style="padding:16px">
-        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">48<span class="unit">ms</span></div><div class="big-num-placeholder" style="display:none;font-size:40px;font-weight:700;color:var(--text3);padding:16px 0">--<span style="font-size:14px;font-weight:400">ms</span></div></div>
+        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">48<span class="unit">ms</span></div><div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);padding:16px 0">无数据</div></div>
         <div class="card" style="cursor:default">
           <div class="card-title" style="margin-bottom:12px">HRV趋势</div><div class="detail-placeholder-overlay"><div class="detail-placeholder-text">无数据</div></div>
           <svg width="100%" height="200" viewBox="0 0 340 200">
@@ -2101,7 +2101,7 @@ body{
             <polyline points="52.8,116.3 64.9,90.0 77.0,105.0 89.1,78.8 101.2,71.3 113.3,52.5 125.4,45.0 137.5,30.0 149.6,41.3 161.7,56.3 173.8,63.8 185.9,48.8 198.0,60.0 210.1,75.0 222.2,82.5 234.3,67.5 246.4,56.3 258.5,41.3 270.6,48.8 282.7,33.8 294.8,37.5 306.9,56.3 319.0,67.5" fill="none" stroke="var(--hrv)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日HRV统计</div><div class="metric-row"><span class="metric-label">日平均HRV</span><span class="metric-value">52 ms</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最小HRV</span><span class="metric-value">32 ms</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最大HRV</span><span class="metric-value">78 ms</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div></div>
+        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日HRV统计</div><div class="metric-row"><span class="metric-label">日平均HRV</span><span class="metric-value">52 ms</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最小HRV</span><span class="metric-value">32 ms</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最大HRV</span><span class="metric-value">78 ms</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div></div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:12px">近7天趋势</div><div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 2px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">45</span><div style="width:100%;height:62%;background:var(--hrv);border-radius:6px 6px 3px 3px;opacity:0.50;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周一</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">52</span><div style="width:100%;height:82%;background:var(--hrv);border-radius:6px 6px 3px 3px;opacity:0.62;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周二</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">48</span><div style="width:100%;height:70%;background:var(--hrv);border-radius:6px 6px 3px 3px;opacity:0.55;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周三</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">50</span><div style="width:100%;height:75%;background:var(--hrv);border-radius:6px 6px 3px 3px;opacity:0.58;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周四</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">55</span><div style="width:100%;height:90%;background:var(--hrv);border-radius:6px 6px 3px 3px;opacity:0.70;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周五</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">48</span><div style="width:100%;height:70%;background:var(--hrv);border-radius:6px 6px 3px 3px;opacity:0.55;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周六</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">52</span><div style="width:100%;height:82%;background:var(--hrv);border-radius:6px 6px 3px 3px;opacity:0.62;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周日</span></div></div></div>
       </div>
     </div>
@@ -2110,7 +2110,7 @@ body{
     <div class="screen" id="screen-cadence-detail">
       <div class="nav-bar"><button class="back" onclick="navigate('today')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">步频详情</span></div>
       <div style="padding:16px">
-        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">112<span class="unit">步/分钟</span></div><div class="big-num-placeholder" style="display:none;font-size:40px;font-weight:700;color:var(--text3);padding:16px 0">--<span style="font-size:14px;font-weight:400">步/分钟</span></div></div>
+        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">112<span class="unit">步/分钟</span></div><div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);padding:16px 0">无数据</div></div>
         <div class="card" style="cursor:default">
           <div class="card-title" style="margin-bottom:12px">步频趋势</div><div class="detail-placeholder-overlay"><div class="detail-placeholder-text">无数据</div></div>
           <svg width="100%" height="200" viewBox="0 0 340 200">
@@ -2135,7 +2135,7 @@ body{
             <circle cx="330" cy="88" r="2.5" fill="var(--cadence)"/>
           </svg>
         </div>
-        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日步频统计</div><div class="metric-row"><span class="metric-label">日平均步频</span><span class="metric-value">108</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最小步频</span><span class="metric-value">62</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最大步频</span><span class="metric-value">156</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div></div>
+        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日步频统计</div><div class="metric-row"><span class="metric-label">日平均步频</span><span class="metric-value">108</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最小步频</span><span class="metric-value">62</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最大步频</span><span class="metric-value">156</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div></div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:12px">近7天趋势</div><div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 2px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">105</span><div style="width:100%;height:72%;background:var(--cadence);border-radius:6px 6px 3px 3px;opacity:0.55;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周一</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">110</span><div style="width:100%;height:80%;background:var(--cadence);border-radius:6px 6px 3px 3px;opacity:0.60;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周二</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">108</span><div style="width:100%;height:76%;background:var(--cadence);border-radius:6px 6px 3px 3px;opacity:0.57;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周三</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">102</span><div style="width:100%;height:67%;background:var(--cadence);border-radius:6px 6px 3px 3px;opacity:0.52;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周四</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">112</span><div style="width:100%;height:85%;background:var(--cadence);border-radius:6px 6px 3px 3px;opacity:0.65;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周五</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">115</span><div style="width:100%;height:92%;background:var(--cadence);border-radius:6px 6px 3px 3px;opacity:0.70;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周六</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">108</span><div style="width:100%;height:76%;background:var(--cadence);border-radius:6px 6px 3px 3px;opacity:0.57;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周日</span></div></div></div>
       </div>
     </div>
@@ -2144,7 +2144,7 @@ body{
     <div class="screen" id="screen-breath-detail">
       <div class="nav-bar"><button class="back" onclick="navigate('today')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">呼吸率详情</span></div>
       <div style="padding:16px">
-        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">16<span class="unit">次/分钟</span></div><div class="big-num-placeholder" style="display:none;font-size:40px;font-weight:700;color:var(--text3);padding:16px 0">--<span style="font-size:14px;font-weight:400">次/分钟</span></div></div>
+        <div class="card" style="cursor:default;text-align:center"><div class="big-num" style="font-size:56px">16<span class="unit">次/分钟</span></div><div class="big-num-placeholder" style="display:none;font-size:28px;font-weight:700;color:var(--text3);padding:16px 0">无数据</div></div>
         <div class="card" style="cursor:default">
           <div class="card-title" style="margin-bottom:12px">呼吸率趋势</div><div class="detail-placeholder-overlay"><div class="detail-placeholder-text">无数据</div></div>
           <svg width="100%" height="200" viewBox="0 0 340 200">
@@ -2169,7 +2169,7 @@ body{
             <circle cx="330" cy="85" r="2.5" fill="var(--rate)"/>
           </svg>
         </div>
-        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日呼吸率统计</div><div class="metric-row"><span class="metric-label">日平均呼吸率</span><span class="metric-value">15</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最小呼吸率</span><span class="metric-value">12</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div><div class="metric-row"><span class="metric-label">日最大呼吸率</span><span class="metric-value">20</span><span class="no-data-val" style="font-size:13px;font-weight:600;color:var(--text3)">无数据</span></div></div>
+        <div class="card" style="cursor:default"><div class="card-title" style="margin-bottom:8px">今日呼吸率统计</div><div class="metric-row"><span class="metric-label">日平均呼吸率</span><span class="metric-value">15</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最小呼吸率</span><span class="metric-value">12</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div><div class="metric-row"><span class="metric-label">日最大呼吸率</span><span class="metric-value">20</span><span class="no-data-val" style="font-size:13px;font-weight:500;color:var(--text3)">--</span></div></div>
         <div class="card" style="margin-top:12px;cursor:default"><div class="card-title" style="margin-bottom:12px">近7天趋势</div><div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 2px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">15</span><div style="width:100%;height:66%;background:var(--rate);border-radius:6px 6px 3px 3px;opacity:0.52;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周一</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">16</span><div style="width:100%;height:76%;background:var(--rate);border-radius:6px 6px 3px 3px;opacity:0.58;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周二</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">15</span><div style="width:100%;height:66%;background:var(--rate);border-radius:6px 6px 3px 3px;opacity:0.52;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周三</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">14</span><div style="width:100%;height:55%;background:var(--rate);border-radius:6px 6px 3px 3px;opacity:0.45;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周四</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">16</span><div style="width:100%;height:76%;background:var(--rate);border-radius:6px 6px 3px 3px;opacity:0.58;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周五</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">17</span><div style="width:100%;height:86%;background:var(--rate);border-radius:6px 6px 3px 3px;opacity:0.65;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周六</span></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:var(--text2);font-weight:500">16</span><div style="width:100%;height:76%;background:var(--rate);border-radius:6px 6px 3px 3px;opacity:0.58;min-height:4px"></div><span style="font-size:10px;color:var(--text3)">周日</span></div></div></div>
       </div>
     </div>

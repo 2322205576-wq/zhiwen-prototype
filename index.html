@@ -3328,9 +3328,52 @@ function selectCollectionMode(m){
 }
 
 function reconnectDevice(){
-  var t=document.getElementById('reconnect-toast');
-  t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show')},2000);
+  // 切换到未连接状态并开始搜索设备
+  clearTimeout(bindTimer);bindTimer=null;
+  clearInterval(window.searchTipTimer);
+  deviceConnected=false;
+  var cv=document.getElementById('device-connected-view');
+  var dv=document.getElementById('device-disconnected-view');
+  if(cv)cv.style.display='none';
+  if(dv)dv.style.display='';
+  // 重置并进入搜索
+  var init=document.getElementById('bind-phase-init');
+  if(init)init.style.display='none';
+  document.querySelectorAll('#bind-status-area .bind-phase-view').forEach(function(v){v.classList.remove('active')});
+  document.getElementById('bind-phase-searching').classList.add('active');
+  var feats=document.getElementById('device-features');
+  if(feats)feats.style.display='none';
+  var ring=document.querySelector('.disconnected-ring');
+  if(ring)ring.classList.add('searching');
+  // 搜索步骤
+  document.getElementById('search-step-1').classList.add('done');
+  document.getElementById('search-step-2').classList.add('done');
+  document.getElementById('search-step-3').classList.remove('done');
+  var tips=['正在扫描蓝牙信号...','请确保戒指靠近手机','如未发现请将戒指贴近手机'];
+  var tipIdx=0;
+  var tipEl=document.getElementById('search-tip');
+  if(tipEl)tipEl.textContent=tips[0];
+  window.searchTipTimer=setInterval(function(){
+    tipIdx=(tipIdx+1)%tips.length;
+    if(tipEl)tipEl.style.opacity='0';
+    setTimeout(function(){if(tipEl){tipEl.textContent=tips[tipIdx];tipEl.style.opacity='1';}},400);
+  },1200);
+  // 搜索完成
+  searchAttempt++;
+  bindTimer=setTimeout(function(){
+    clearInterval(window.searchTipTimer);
+    if(ring)ring.classList.remove('searching');
+    document.querySelectorAll('#bind-status-area .bind-phase-view').forEach(function(v){v.classList.remove('active')});
+    var s3=document.getElementById('search-step-3');
+    if(s3)s3.classList.add('done');
+    if(searchAttempt%2===0){
+      document.getElementById('bind-phase-found').classList.add('active');
+    }else{
+      document.getElementById('bind-phase-no-device').classList.add('active');
+    }
+    bindTimer=null;
+    bindStep=1;
+  },3000);
 }
 
 function showUnbindModal(){document.getElementById('unbind-modal').classList.add('show')}

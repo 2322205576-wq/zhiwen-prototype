@@ -758,6 +758,13 @@ body{
         <div class="splash-title">指 闻</div>
         <div class="splash-sub">智能戒指 · 健康随行</div>
       </div>
+      <!-- SDK广告预留位：可替换为企业LOGO动效或第三方SDK广告 -->
+      <div id="splash-ad-slot" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0;pointer-events:none;opacity:0.35">
+        <div style="text-align:center">
+          <div style="font-size:60px">📡</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:4px">广告位预留</div>
+        </div>
+      </div>
       <div class="splash-loading">
         <span></span><span></span><span></span>
       </div>
@@ -805,7 +812,7 @@ body{
           <!-- 验证码登录 -->
           <div id="login-mode-code">
             <input class="login-input-premium" type="text" id="login-account-code" placeholder="手机号 / 邮箱" style="margin-bottom:6px" oninput="checkLoginCodeBtn()">
-            <div class="login-error" id="account-code-error">请输入有效手机号/邮箱帐号</div>
+            <div class="login-error" id="account-code-error">请输入正确格式的手机号/邮箱</div>
             <div style="display:flex;gap:10px;margin-bottom:16px">
               <input class="login-input-premium" type="text" id="login-code" placeholder="验证码" maxlength="6" style="flex:1" oninput="checkLoginCodeBtn()">
               <button class="login-sms-btn-premium" id="sms-btn2" onclick="sendLoginSMS()">获取验证码</button>
@@ -817,12 +824,12 @@ body{
           <!-- 密码登录 -->
           <div id="login-mode-password" style="display:none">
             <input class="login-input-premium" type="text" id="login-account-pw" placeholder="手机号 / 邮箱" style="margin-bottom:6px" oninput="checkPwLoginBtn()">
-            <div class="login-error" id="account-pw-error">请输入有效手机号/邮箱帐号</div>
+            <div class="login-error" id="account-pw-error">请输入正确格式的手机号/邮箱</div>
             <div class="login-pw-wrap">
               <input class="login-input-premium" type="password" id="login-password" placeholder="密码" oninput="checkPwLoginBtn()" style="padding-right:52px">
               <button class="login-pw-toggle" id="pw-toggle-btn" onclick="togglePwVisibility()">显示</button>
             </div>
-            <a class="login-forgot" onclick="navigate('forgot-password')" style="margin-bottom:12px">忘记密码？</a>
+            <a class="login-forgot" onclick="syncAccountToForgot();navigate('forgot-password')" style="margin-bottom:12px">忘记密码？</a>
             <div class="login-error" id="pw-error">账号或密码错误，请重新输入</div>
             <button class="btn-login-premium" id="login-pw-submit-btn" onclick="handlePwLogin()" style="opacity:0.45" disabled>登 录</button>
           </div>
@@ -831,7 +838,7 @@ body{
         <!-- 协议勾选 -->
         <div class="checkbox-row" id="agree-checkbox" onclick="toggleAgree()" style="justify-content:center;margin:22px 0 16px">
           <div class="checkbox-box"></div>
-          <span class="checkbox-text">我已阅读并同意<a href="#" onclick="event.stopPropagation();navigate('about')" style="cursor:pointer">《xx认证服务》</a><a href="#" onclick="event.stopPropagation();navigate('about')" style="cursor:pointer">《用户协议》</a><a href="#" onclick="event.stopPropagation();navigate('privacy')" style="cursor:pointer">《隐私政策》</a>，未注册的手机号将自动创建帐号</span>
+          <span class="checkbox-text">我已阅读并同意<a href="#" onclick="event.stopPropagation();showProtocolPage('auth')" style="cursor:pointer" id="auth-service-link">《xx认证服务》</a><a href="#" onclick="event.stopPropagation();navigate('user-agreement')" style="cursor:pointer">《用户协议》</a><a href="#" onclick="event.stopPropagation();navigate('privacy')" style="cursor:pointer">《隐私政策》</a>，未注册的手机号将自动创建帐号</span>
         </div>
 
         <!-- 其他登录方式 -->
@@ -861,7 +868,7 @@ body{
             <button class="login-sms-btn-premium" id="forgot-sms-btn" onclick="forgotResendCode()">获取验证码</button>
           </div>
           <div class="login-pw-wrap">
-            <input class="login-input-premium" type="password" id="forgot-new-pw" placeholder="新密码（6位以上）" oninput="checkForgotPw()" style="padding-right:52px">
+            <input class="login-input-premium" type="password" id="forgot-new-pw" placeholder="新密码（8-12位，含字母/数字/符号至少两种）" oninput="checkForgotPw()" style="padding-right:52px">
             <button class="login-pw-toggle" onclick="toggleForgotPwVis()">显示</button>
           </div>
           <div class="login-pw-wrap" style="margin-bottom:6px">
@@ -2465,6 +2472,14 @@ body{
   </div>
 
   <!-- 隐私政策页 -->
+  <div class="screen" id="screen-user-agreement">
+    <div style="height:12px;flex-shrink:0"></div>
+    <div class="nav-bar"><button class="back" onclick="navigate(previousScreen)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title" id="user-agreement-title">用户协议</span></div>
+    <div style="padding:16px;overflow-y:auto;flex:1">
+      <div class="card" style="cursor:default"><p style="font-size:14px;color:var(--text);line-height:2;font-weight:600">指闻用户服务协议</p><p style="font-size:13px;color:var(--text2);line-height:1.8;margin-top:8px">欢迎使用指闻App及智能戒指服务。本协议是你就指闻产品和服务与本公司之间订立的法律协议。</p><p style="font-size:13px;color:var(--text2);line-height:1.8;margin-top:12px"><b>一、服务内容</b><br/>指闻提供智能戒指健康监测、数据记录与分析、设备管理等服务。</p><p style="font-size:13px;color:var(--text2);line-height:1.8;margin-top:12px"><b>二、用户义务</b><br/>你应提供真实、准确的个人信息，并妥善保管帐号密码。</p><p style="font-size:13px;color:var(--text2);line-height:1.8;margin-top:12px"><b>三、免责条款</b><br/>指闻提供的健康数据仅供参考，不作为医疗诊断依据。如有不适请及时就医。</p><p style="font-size:13px;color:var(--text2);line-height:1.8;margin-top:12px"><b>四、协议修改</b><br/>我们有权在必要时修改本协议，修改后将在App内公示。</p><p style="font-size:12px;color:var(--text3);line-height:1.8;margin-top:20px">更新日期：2026年1月</p></div>
+    </div>
+  </div>
+
   <div class="screen" id="screen-privacy">
     <div style="height:12px;flex-shrink:0"></div>
     <div class="nav-bar"><button class="back" onclick="navigate(previousScreen)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button><span class="title">隐私政策</span></div>
@@ -2532,7 +2547,7 @@ const screenMap = {
   'cadence-detail':'screen-cadence-detail','breath-detail':'screen-breath-detail',
   'health':'screen-health','device':'screen-device','me':'screen-me',
   'account':'screen-account','edit-goals':'screen-edit-goals','feedback':'screen-feedback','profile-info':'screen-profile-info',
-  'forgot-password':'screen-forgot-password','privacy':'screen-privacy','about':'screen-about',
+  'forgot-password':'screen-forgot-password','privacy':'screen-privacy','user-agreement':'screen-user-agreement','about':'screen-about',
 };
 let currentScreen = 'splash';
 
@@ -2572,6 +2587,24 @@ document.addEventListener('DOMContentLoaded', function(){
 	let previousScreen = 'login';
 let currentTab = '';
 
+var carriers = ['中国移动认证服务', '中国联通认证服务', '中国电信认证服务'];
+var currentCarrier = carriers[Math.floor(Math.random() * carriers.length)];
+function setAuthServiceName() {
+  var el = document.getElementById('auth-service-link');
+  if (el) {
+    el.textContent = '《' + currentCarrier + '》';
+    currentCarrier = carriers[(carriers.indexOf(currentCarrier) + 1) % carriers.length];
+  }
+}
+function showProtocolPage(type) {
+  if (type === 'auth') {
+    var el = document.getElementById('auth-service-link');
+    var title = el ? el.textContent.replace(/《|》/g, '') : '认证服务';
+    document.getElementById('user-agreement-title').textContent = title;
+    navigate('user-agreement');
+  }
+}
+
 function navigate(screenName) {
   if(!deviceConnected && (screenName==='today'||screenName==='health')){
     var t=document.getElementById('bind-toast');
@@ -2585,6 +2618,13 @@ function navigate(screenName) {
   if (!oldEl || !newEl || oldEl === newEl) return;
   previousScreen=currentScreen;
   oldEl.classList.remove('active');oldEl.classList.add('hide-left');
+  if (screenName === 'login') {
+    setTimeout(function(){
+      setAuthServiceName();
+      var authLink = document.getElementById('auth-service-link');
+      if (authLink) authLink.style.display = '';
+    }, 50);
+  }
   setTimeout(()=>oldEl.classList.remove('hide-left'),300);
   newEl.classList.add('active');newEl.scrollTop=0;
   currentScreen=screenName;
@@ -3465,14 +3505,17 @@ function handleOneTapLogin(){
 }
 function switchToManual() {
       loginMode = 'manual';
-      const onetap = document.getElementById('login-state-onetap');
-      const manual = document.getElementById('login-state-manual');
-      const otherBtn = document.getElementById('other-login-btn');
+      var onetap = document.getElementById('login-state-onetap');
+      var manual = document.getElementById('login-state-manual');
+      var otherBtn = document.getElementById('other-login-btn');
       onetap.classList.add('hidden');
-      setTimeout(() => {
+      // 手动登录不需要认证服务链接
+      var authLink = document.getElementById('auth-service-link');
+      if (authLink) authLink.style.display = 'none';
+      setTimeout(function() {
         onetap.style.display = 'none';
         manual.style.display = 'block';
-        requestAnimationFrame(() => {
+        requestAnimationFrame(function() {
           manual.classList.remove('hidden');
           manual.style.opacity = '1';
           manual.style.transform = 'translateY(0)';
@@ -3560,16 +3603,30 @@ function checkForgotPw() {
   const pwErr = document.getElementById('forgot-pw-error');
   const codeErr = document.getElementById('forgot-code-error');
   codeErr.style.display = 'none';
-  if (code.length > 0 && pw.length >= 6 && pw === pw2) {
-    btn.disabled = false;
-    btn.style.opacity = '1';
+  // 密码复杂度：8-12位，字母/数字/符号至少两种
+  function validPw(p) {
+    if (p.length < 8 || p.length > 12) return false;
+    var t = 0;
+    if (/[a-zA-Z]/.test(p)) t++;
+    if (/[0-9]/.test(p)) t++;
+    if (/[^a-zA-Z0-9]/.test(p)) t++;
+    return t >= 2;
+  }
+  if (pw && !validPw(pw)) {
+    pwErr.textContent = '长度需8-12位，包含大写字母、小写字母、数字或特殊符号中的至少两种';
+    pwErr.style.display = 'block';
+    btn.disabled = true; btn.style.opacity = '0.45';
+    return;
+  }
+  if (code.length > 0 && validPw(pw) && pw === pw2) {
+    btn.disabled = false; btn.style.opacity = '1';
   } else {
-    btn.disabled = true;
-    btn.style.opacity = '0.45';
+    btn.disabled = true; btn.style.opacity = '0.45';
   }
   if (pw2.length > 0 && pw !== pw2) {
+    pwErr.textContent = '两次密码不一致';
     pwErr.style.display = 'block';
-  } else {
+  } else if (!pw || validPw(pw)) {
     pwErr.style.display = 'none';
   }
 }
@@ -3588,6 +3645,8 @@ function toggleForgotPwVis() {
 
 function forgotResetPw() {
   const code = document.getElementById('forgot-code').value.trim();
+  const pw = document.getElementById('forgot-new-pw').value;
+  const pw2 = document.getElementById('forgot-new-pw2').value;
   if (code !== '123456') {
     const err = document.getElementById('forgot-code-error');
     err.style.display = 'block';
@@ -3596,18 +3655,28 @@ function forgotResetPw() {
     err.style.animation = 'shakeX .4s ease';
     return;
   }
+  if (pw !== pw2) {
+    var perr = document.getElementById('forgot-pw-error');
+    perr.textContent = '两次密码不一致';
+    perr.style.display = 'block';
+    return;
+  }
   // Show success
   document.getElementById('forgot-form').style.display = 'none';
   document.getElementById('forgot-success').style.display = 'block';
-  // Show toast and navigate to password login after delay
+  // 保存帐号以便同步回登录页
+  var syncedAccount = document.getElementById('forgot-account').value.trim();
   showAgreeToast('密码重置成功');
   setTimeout(function(){
-    // Reset form and navigate to login in password mode
     resetForgotFormState();
     navigate('login');
-    // Switch to password tab
     setTimeout(function(){
       switchLoginTab('password');
+      if (syncedAccount) {
+        document.getElementById('login-account-pw').value = syncedAccount;
+        document.getElementById('login-password').value = '';
+        checkPwLoginBtn();
+      }
     }, 400);
   }, 1800);
 }
@@ -3754,6 +3823,19 @@ function forgotBackToLogin() {
   navigate('login');
 }
 
+function syncAccountToForgot() {
+  var pwMode = document.getElementById('login-mode-password');
+  var account = '';
+  if (pwMode && pwMode.style.display !== 'none') {
+    account = document.getElementById('login-account-pw').value.trim();
+  } else {
+    account = document.getElementById('login-account-code').value.trim();
+  }
+  if (account) {
+    document.getElementById('forgot-account').value = account;
+  }
+}
+
 function goBackFromForgot() {
   resetForgotFormState();
   navigate('login');
@@ -3814,7 +3896,20 @@ function handlePwLogin() {
     return;
   }
   accountErr.style.display = 'none';
-  if ((account !== 'test@zhiwen.com' && account !== '13812345678') || pw !== '123456') {
+  // 检查是否为已注册帐号
+  var registeredAccounts = ['test@zhiwen.com', '13812345678'];
+  if (registeredAccounts.indexOf(account) === -1) {
+    err.style.display = 'block';
+    err.style.animation = 'none';
+    err.offsetHeight;
+    err.style.animation = 'shakeX .4s ease';
+    var pt=document.getElementById('agree-toast');
+    pt.textContent='该手机号/邮箱未注册，请使用验证码登录';
+    pt.classList.add('show');
+    setTimeout(function(){pt.classList.remove('show')},2200);
+    return;
+  }
+  if (pw !== '123456') {
     err.style.display = 'block';
     err.style.animation = 'none';
     err.offsetHeight;

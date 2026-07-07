@@ -868,9 +868,10 @@ body{
             <button class="login-sms-btn-premium" id="forgot-sms-btn" onclick="forgotResendCode()">获取验证码</button>
           </div>
           <div class="login-pw-wrap">
-            <input class="login-input-premium" type="password" id="forgot-new-pw" placeholder="新密码（8-12位，含字母/数字/符号至少两种）" oninput="checkForgotPw()" style="padding-right:52px">
+            <input class="login-input-premium" type="password" id="forgot-new-pw" placeholder="新密码" oninput="checkForgotPw()" style="padding-right:52px">
             <button class="login-pw-toggle" onclick="toggleForgotPwVis()">显示</button>
           </div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;line-height:1.4">密码需8-12位，包含字母、数字、符号中的至少两种</div>
           <div class="login-pw-wrap" style="margin-bottom:6px">
             <input class="login-input-premium" type="password" id="forgot-new-pw2" placeholder="确认新密码" oninput="checkForgotPw()">
           </div>
